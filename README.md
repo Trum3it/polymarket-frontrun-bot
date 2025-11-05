@@ -1,21 +1,22 @@
 # Polymarket Copy Trading Bot
 
+Copy the best, automate success. A production-grade Polymarket copy-trading bot that monitors top traders and mirrors their positions with smart, proportional sizing, safety checks, and optional aggregation. Built with TypeScript and the official Polymarket CLOB client.
+
+Keywords: polymarket copy trading bot, polymarket trading bot, polymarket copytrading, polymarket trading tool, prediction markets bot
+
 [![TypeScript](https://img.shields.io/badge/TypeScript-5-blue?style=flat&logo=typescript)](https://www.typescriptlang.org/)
 [![Node.js](https://img.shields.io/badge/Node.js-%3E%3D18-339933?style=flat&logo=node.js)](https://nodejs.org/)
 [![Polymarket CLOB](https://img.shields.io/badge/Polymarket-CLOB%20Client-purple?style=flat)](https://github.com/Polymarket/clob-client)
 [![Docker](https://img.shields.io/badge/Docker-ready-2496ED?style=flat&logo=docker)](https://www.docker.com/)
 [![ESLint](https://img.shields.io/badge/ESLint-configured-4B32C3?style=flat&logo=eslint)](https://eslint.org/)
 [![Prettier](https://img.shields.io/badge/Prettier-configured-F7B93E?style=flat&logo=prettier)](https://prettier.io/)
-[![License: Apache-2.0](https://img.shields.io/badge/License-Apache--2.0-green.svg)](LICENSE)
 
+# Contact Me 
+
+[![Email](https://img.shields.io/badge/Email-xsui46941@gmail.com-D14836?style=flat&logo=gmail)](mailto:xsui46941@gmail.com)
 [![Telegram](https://img.shields.io/badge/Telegram-@lorine93s-2CA5E0?style=flat&logo=telegram)](https://t.me/lorine93s)
-[![Twitter/X](https://img.shields.io/badge/Twitter-@kakamajo__btc-000000?style=flat&logo=x)](https://twitter.com/kakamajo_btc)
+[![Twitter/X](https://img.shields.io/badge/Twitter-@kakamajo__btc-0000f0?style=flat&logo=x)](https://twitter.com/kakamajo_btc)
 
-Copy the best, automate success. A production-grade Polymarket copy-trading bot that monitors top traders and mirrors their positions with smart, proportional sizing, safety checks, and optional aggregation. Built with TypeScript and the official Polymarket CLOB client.
-
-Keywords: polymarket copy trading bot, polymarket trading bot, polymarket copytrading, polymarket trading tool, prediction markets bot
-
----
 
 ## Highlights
 
@@ -26,7 +27,6 @@ Keywords: polymarket copy trading bot, polymarket trading bot, polymarket copytr
 - CLI utilities (allowance, stats, simulations – scaffold)
 - Docker-ready and cloud-friendly
 
----
 
 ## Workflow Overview
 
@@ -38,7 +38,6 @@ Keywords: polymarket copy trading bot, polymarket trading bot, polymarket copytr
 
 This repo ships a compile-ready scaffold. Wire the real activity feed and order posting where noted to go fully live.
 
----
 
 ## Architecture & Key Tech
 
@@ -61,7 +60,6 @@ Module map (src/modules):
 - utils/logger.ts – structured console logs
 - utils/fetchData.ts, postOrder.ts, getMyBalance.ts, spinner.ts – helpers
 
----
 
 ## Quick Start
 
@@ -104,7 +102,6 @@ npm run build
 npm start
 ```
 
----
 
 ## How It Works
 
@@ -115,7 +112,6 @@ npm start
 
 Note: This repository ships with a scaffolded monitor/executor. You can extend `src/modules/services/tradeMonitor.ts` to wire real data sources and finalize order routing in `src/modules/services/tradeExecutor.ts`.
 
----
 
 ## Scripts
 
@@ -124,7 +120,6 @@ Note: This repository ships with a scaffolded monitor/executor. You can extend `
 - `npm run check-allowance` – example utility script (scaffold)
 - `npm run simulate` – placeholder for simulation runner
 
----
 
 ## Configuration Reference
 
@@ -140,7 +135,6 @@ Note: This repository ships with a scaffolded monitor/executor. You can extend `
 | `TRADE_AGGREGATION_ENABLED` | Aggregate sub-$1 buys into one order | `true` |
 | `TRADE_AGGREGATION_WINDOW_SECONDS` | Aggregation window (seconds) | `300` |
 
----
 
 ## Deployment
 
@@ -150,7 +144,6 @@ Note: This repository ships with a scaffolded monitor/executor. You can extend `
 
 Set environment variables via `.env` or your orchestrator (render, fly, k8s).
 
----
 
 ## Roadmap
 
@@ -160,28 +153,6 @@ Set environment variables via `.env` or your orchestrator (render, fly, k8s).
 - Provide full simulation/backtesting toolkit
 - Add web dashboard for monitoring
 
----
-
 ## SEO – Polymarket Trading Bot & Copytrading
 
 This project is designed as a professional, extensible Polymarket trading tool. If you are searching for a “Polymarket copy trading bot”, “Polymarket copytrading bot”, or “Polymarket trading bot”, this repository provides a modern TypeScript implementation, leveraging the official CLOB client and best practices for monitoring, risk controls, and modular strategy development.
-
----
-
-## Legal & Risk
-
-Trading involves risk. Use at your own risk. Ensure compliance with applicable laws and Polymarket’s terms. Test with small amounts first and monitor execution frequently.
-
----
-
-## Acknowledgments
-
-- Built with the official Polymarket CLOB client
-- Inspired by prior open-source Polymarket copy trading efforts
-
----
-
-## Contact
-
-- 📣 Telegram: [@lorine93s](https://t.me/lorine93s)
-- 🐦 Twitter/X: [@kakamajo_btc](https://twitter.com/kakamajo_btc)
