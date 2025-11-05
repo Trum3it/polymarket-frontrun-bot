@@ -1,0 +1,17 @@
+version: "3.9"
+services:
+  polymarket-copy-bot:
+    build: .
+    restart: unless-stopped
+    environment:
+      - USER_ADDRESSES=${USER_ADDRESSES}
+      - PROXY_WALLET=${PROXY_WALLET}
+      - PRIVATE_KEY=${PRIVATE_KEY}
+      - RPC_URL=${RPC_URL}
+      - FETCH_INTERVAL=${FETCH_INTERVAL:-1}
+      - TRADE_MULTIPLIER=${TRADE_MULTIPLIER:-1.0}
+      - RETRY_LIMIT=${RETRY_LIMIT:-3}
+      - TRADE_AGGREGATION_ENABLED=${TRADE_AGGREGATION_ENABLED:-false}
+      - TRADE_AGGREGATION_WINDOW_SECONDS=${TRADE_AGGREGATION_WINDOW_SECONDS:-300}
+
+

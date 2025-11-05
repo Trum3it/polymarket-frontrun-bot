@@ -1,0 +1,68 @@
+{
+  "name": "polymarket-copy-trading-bot",
+  "version": "1.0.0",
+  "private": false,
+  "description": "Polymarket copy-trading bot: monitor top traders and mirror positions with smart sizing, safety checks, and simulation tools.",
+  "license": "Apache-2.0",
+  "type": "commonjs",
+  "main": "dist/index.js",
+  "engines": {
+    "node": ">=18"
+  },
+  "scripts": {
+    "build": "tsc",
+    "start": "node dist/index.js",
+    "dev": "ts-node src/index.ts",
+    "lint": "eslint .",
+    "lint:fix": "eslint --fix .",
+    "format": "prettier --write .",
+    "check-allowance": "ts-node src/scripts/checkAllowance.ts",
+    "verify-allowance": "ts-node src/scripts/verifyAllowance.ts",
+    "set-token-allowance": "ts-node src/scripts/setTokenAllowance.ts",
+    "manual-sell": "ts-node src/scripts/manualSell.ts",
+    "simulate": "ts-node src/scripts/runSimulations.ts",
+    "check-stats": "ts-node src/scripts/checkMyStats.ts"
+  },
+  "keywords": [
+    "polymarket",
+    "copy trading",
+    "trading bot",
+    "polymarket bot",
+    "copytrading",
+    "prediction markets",
+    "polygon",
+    "usdc"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/your-org/polymarket-copy-trading-bot.git"
+  },
+  "bugs": {
+    "url": "https://github.com/your-org/polymarket-copy-trading-bot/issues"
+  },
+  "homepage": "https://github.com/your-org/polymarket-copy-trading-bot#readme",
+  "dependencies": {
+    "@polymarket/clob-client": "^4.14.0",
+    "axios": "^1.7.9",
+    "chalk": "^5.4.1",
+    "dotenv": "^16.4.7",
+    "ethers": "^5.8.0",
+    "mongoose": "^8.9.5",
+    "ora": "^8.2.0"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.19.0",
+    "@types/node": "^22.10.10",
+    "@typescript-eslint/eslint-plugin": "^8.22.0",
+    "@typescript-eslint/parser": "^8.22.0",
+    "eslint": "^9.19.0",
+    "eslint-config-prettier": "^10.0.1",
+    "eslint-plugin-prettier": "^5.2.3",
+    "globals": "^15.14.0",
+    "prettier": "^3.4.2",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.7.3"
+  }
+}
+
+
