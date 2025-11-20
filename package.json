@@ -47,7 +47,8 @@
     "dotenv": "^16.4.7",
     "ethers": "^5.8.0",
     "mongoose": "^8.9.5",
-    "ora": "^8.2.0"
+    "ora": "^8.2.0",
+    "mcp-polymarket": "^0.5.3"
   },
   "devDependencies": {
     "@eslint/js": "^9.19.0",

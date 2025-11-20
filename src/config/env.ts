@@ -10,6 +10,9 @@ export type RuntimeEnv = {
   aggregationEnabled: boolean;
   aggregationWindowSeconds: number;
   usdcContractAddress: string;
+  polymarketApiKey?: string;
+  polymarketApiSecret?: string;
+  polymarketApiPassphrase?: string;
 };
 
 export function loadEnv(): RuntimeEnv {
@@ -32,8 +35,13 @@ export function loadEnv(): RuntimeEnv {
     return v;
   };
 
+  const userAddresses = parseList(process.env.USER_ADDRESSES);
+  if (userAddresses.length === 0) {
+    throw new Error('USER_ADDRESSES must contain at least one trader address');
+  }
+
   const env: RuntimeEnv = {
-    userAddresses: parseList(process.env.USER_ADDRESSES),
+    userAddresses,
     proxyWallet: required('PROXY_WALLET', process.env.PROXY_WALLET),
     privateKey: required('PRIVATE_KEY', process.env.PRIVATE_KEY),
     mongoUri: process.env.MONGO_URI,
@@ -44,6 +52,9 @@ export function loadEnv(): RuntimeEnv {
     aggregationEnabled: String(process.env.TRADE_AGGREGATION_ENABLED ?? 'false') === 'true',
     aggregationWindowSeconds: Number(process.env.TRADE_AGGREGATION_WINDOW_SECONDS ?? 300),
     usdcContractAddress: process.env.USDC_CONTRACT_ADDRESS || '0x2791Bca1f2de4661ED88A30C99A7a9449Aa84174',
+    polymarketApiKey: process.env.POLYMARKET_API_KEY,
+    polymarketApiSecret: process.env.POLYMARKET_API_SECRET,
+    polymarketApiPassphrase: process.env.POLYMARKET_API_PASSPHRASE,
   };
 
   return env;

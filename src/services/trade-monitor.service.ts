@@ -3,6 +3,7 @@ import type { RuntimeEnv } from '../config/env';
 import type { Logger } from '../utils/logger.util';
 import type { TradeSignal } from '../domain/trade.types';
 import { httpGet } from '../utils/fetch-data.util';
+import axios from 'axios';
 
 export type TradeMonitorDeps = {
   client: ClobClient;
@@ -38,7 +39,7 @@ export class TradeMonitorService {
   async start(): Promise<void> {
     const { logger, env } = this.deps;
     logger.info(
-      `Monitoring ${this.deps.userAddresses.length} trader(s) every ${env.fetchIntervalSeconds}s...`,
+      `Monitoring trader(${this.deps.userAddresses.join(', ')})...`,
     );
     this.timer = setInterval(() => void this.tick().catch(() => undefined), env.fetchIntervalSeconds * 1000);
     await this.tick();
@@ -92,6 +93,12 @@ export class TradeMonitorService {
         await this.deps.onDetectedTrade(signal);
       }
     } catch (err) {
+      // Handle 404 gracefully - user might have no activities yet or endpoint doesn't exist
+      if (axios.isAxiosError(err) && err.response?.status === 404) {
+        // Silently skip - user may not have any activities or endpoint changed
+        return;
+      }
+      // Log other errors
       this.deps.logger.error(`Failed to fetch activities for ${trader}`, err as Error);
     }
   }
