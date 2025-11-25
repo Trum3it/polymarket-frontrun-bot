@@ -1,5 +1,5 @@
 export type RuntimeEnv = {
-  userAddresses: string[];
+  targetAddresses: string[];
   proxyWallet: string;
   privateKey: string;
   mongoUri?: string;
@@ -38,13 +38,13 @@ export function loadEnv(): RuntimeEnv {
     return v;
   };
 
-  const userAddresses = parseList(process.env.USER_ADDRESSES);
-  if (userAddresses.length === 0) {
-    throw new Error('USER_ADDRESSES must contain at least one trader address');
+  const targetAddresses = parseList(process.env.TARGET_ADDRESSES);
+  if (targetAddresses.length === 0) {
+    throw new Error('TARGET_ADDRESSES must contain at least one trader address');
   }
 
   const env: RuntimeEnv = {
-    userAddresses,
+    targetAddresses,
     proxyWallet: required('PUBLIC_KEY', process.env.PUBLIC_KEY),
     privateKey: required('PRIVATE_KEY', process.env.PRIVATE_KEY),
     mongoUri: process.env.MONGO_URI,

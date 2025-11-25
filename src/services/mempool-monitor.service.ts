@@ -111,7 +111,7 @@ export class MempoolMonitorService {
     const { logger, env } = this.deps;
     
     // Monitor all addresses from env (these are the addresses we want to frontrun)
-    for (const targetAddress of env.userAddresses) {
+    for (const targetAddress of env.targetAddresses) {
       try {
         await this.checkRecentActivity(targetAddress);
       } catch (err) {

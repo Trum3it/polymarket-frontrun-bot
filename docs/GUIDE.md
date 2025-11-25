@@ -53,7 +53,7 @@ Create a `.env` file in the project root with the following variables:
 
 | Variable | Description | Example |
 |----------|-------------|---------|
-| `USER_ADDRESSES` | Comma-separated target addresses to frontrun | `0xabc...,0xdef...` |
+| `TARGET_ADDRESSES` | Comma-separated target addresses to frontrun | `0xabc...,0xdef...` |
 | `PUBLIC_KEY` | Your Polygon wallet address | `your_wallet_address` |
 | `PRIVATE_KEY` | Your wallet private key | `your_private_key` |
 | `RPC_URL` | Polygon RPC endpoint (must support pending tx monitoring) | `https://polygon-mainnet.infura.io/v3/YOUR_PROJECT_ID`|
@@ -76,7 +76,7 @@ Create a `.env` file in the project root with the following variables:
 ### Example `.env` File
 
 ```env
-USER_ADDRESSES=0x1234567890abcdef1234567890abcdef12345678,0xabcdef1234567890abcdef1234567890abcdef12
+TARGET_ADDRESSES=0x1234567890abcdef1234567890abcdef12345678,0xabcdef1234567890abcdef1234567890abcdef12
 PUBLIC_KEY=your_wallet_address_here
 PRIVATE_KEY=your_privatekey_key_here
 RPC_URL=https://polygon-mainnet.infura.io/v3/YOUR_PROJECT_ID
@@ -295,7 +295,7 @@ To implement full backtesting:
 **Symptoms:** Bot runs but no trades are frontrun
 
 **Solutions:**
-1. Verify `USER_ADDRESSES` are correct and active traders
+1. Verify `TARGET_ADDRESSES` are correct and active traders
 2. Check that target addresses have recent activity on Polymarket
 3. Verify RPC URL supports pending transaction monitoring
 4. Check `MIN_TRADE_SIZE_USD` - trades below this threshold are ignored

@@ -21,7 +21,7 @@ npm run build && npm start
 Required environment variables:
 
 ```env
-USER_ADDRESSES=0xabc...,0xdef...    # Target addresses to frontrun (comma-separated)
+TARGET_ADDRESSES=0xabc...,0xdef...    # Target addresses to frontrun (comma-separated)
 PUBLIC_KEY=0xyour_wallet          # Your Polygon wallet
 PRIVATE_KEY=your_private_key        # Without 0x prefix
 RPC_URL=https://polygon-mainnet...  # Polygon RPC endpoint (must support pending tx monitoring)

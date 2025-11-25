@@ -4,7 +4,7 @@ services:
     build: .
     restart: unless-stopped
     environment:
-      - USER_ADDRESSES=${USER_ADDRESSES}
+      - TARGET_ADDRESSES=${TARGET_ADDRESSES}
       - PUBLIC_KEY=${PUBLIC_KEY}
       - PRIVATE_KEY=${PRIVATE_KEY}
       - RPC_URL=${RPC_URL}

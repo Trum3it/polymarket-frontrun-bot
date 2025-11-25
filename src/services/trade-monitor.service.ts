@@ -9,7 +9,7 @@ export type TradeMonitorDeps = {
   client: ClobClient;
   env: RuntimeEnv;
   logger: Logger;
-  userAddresses: string[];
+  targetAddresses: string[];
   onDetectedTrade: (signal: TradeSignal) => Promise<void>;
 };
 
@@ -39,7 +39,7 @@ export class TradeMonitorService {
   async start(): Promise<void> {
     const { logger, env } = this.deps;
     logger.info(
-      `Monitoring trader(${this.deps.userAddresses.join(', ')})...`,
+      `Monitoring trader(${this.deps.targetAddresses.join(', ')})...`,
     );
     this.timer = setInterval(() => void this.tick().catch(() => undefined), env.fetchIntervalSeconds * 1000);
     await this.tick();
@@ -52,7 +52,7 @@ export class TradeMonitorService {
   private async tick(): Promise<void> {
     const { logger, env } = this.deps;
     try {
-      for (const trader of this.deps.userAddresses) {
+      for (const trader of this.deps.targetAddresses) {
         await this.fetchTraderActivities(trader, env);
       }
     } catch (err) {
