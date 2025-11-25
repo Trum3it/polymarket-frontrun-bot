@@ -12,6 +12,8 @@ export type PostOrderInput = {
   side: OrderSide;
   sizeUsd: number;
   maxAcceptablePrice?: number;
+  priority?: boolean; // For frontrunning - execute with higher priority
+  targetGasPrice?: string; // Gas price of target transaction for frontrunning
 };
 
 export async function postOrder(input: PostOrderInput): Promise<void> {

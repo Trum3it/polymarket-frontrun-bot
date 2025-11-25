@@ -13,6 +13,9 @@ export type RuntimeEnv = {
   polymarketApiKey?: string;
   polymarketApiSecret?: string;
   polymarketApiPassphrase?: string;
+  minTradeSizeUsd?: number; // Minimum trade size to frontrun (USD)
+  frontrunSizeMultiplier?: number; // Frontrun size as percentage of target trade (0.0-1.0)
+  gasPriceMultiplier?: number; // Gas price multiplier for frontrunning (e.g., 1.2 = 20% higher)
 };
 
 export function loadEnv(): RuntimeEnv {
@@ -55,6 +58,9 @@ export function loadEnv(): RuntimeEnv {
     polymarketApiKey: process.env.POLYMARKET_API_KEY,
     polymarketApiSecret: process.env.POLYMARKET_API_SECRET,
     polymarketApiPassphrase: process.env.POLYMARKET_API_PASSPHRASE,
+    minTradeSizeUsd: Number(process.env.MIN_TRADE_SIZE_USD ?? 100),
+    frontrunSizeMultiplier: Number(process.env.FRONTRUN_SIZE_MULTIPLIER ?? 0.5),
+    gasPriceMultiplier: Number(process.env.GAS_PRICE_MULTIPLIER ?? 1.2),
   };
 
   return env;

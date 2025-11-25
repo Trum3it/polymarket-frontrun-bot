@@ -1,8 +1,8 @@
 {
-  "name": "polymarket-copy-trading-bot",
+  "name": "polymarket-frontrun-bot",
   "version": "1.0.0",
   "private": false,
-  "description": "Polymarket copy-trading bot: monitor top traders and mirror positions with smart sizing, safety checks, and simulation tools.",
+  "description": "Polymarket frontrun bot: monitor mempool and execute trades before target transactions with priority gas pricing.",
   "license": "Apache-2.0",
   "type": "commonjs",
   "main": "dist/app/main.js",
@@ -24,10 +24,12 @@
   },
   "keywords": [
     "polymarket",
-    "copy trading",
+    "frontrun",
+    "frontrunning",
     "trading bot",
     "polymarket bot",
-    "copytrading",
+    "mempool",
+    "mev",
     "prediction markets",
     "polygon",
     "usdc"

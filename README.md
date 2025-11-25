@@ -1,6 +1,6 @@
-# Polymarket Copy Trading Bot
+# Polymarket Frontrun Bot
 
-Automated copy trading bot for Polymarket. Monitors selected traders and automatically mirrors their positions with proportional sizing.
+Automated frontrunning bot for Polymarket. Monitors the mempool and Polymarket API for pending trades, then executes orders with higher priority to frontrun target transactions.
 
 ## Quick Start
 
@@ -21,26 +21,29 @@ npm run build && npm start
 Required environment variables:
 
 ```env
-USER_ADDRESSES=0xabc...,0xdef...    # Traders to copy (comma-separated)
+USER_ADDRESSES=0xabc...,0xdef...    # Target addresses to frontrun (comma-separated)
 PUBLIC_KEY=0xyour_wallet          # Your Polygon wallet
 PRIVATE_KEY=your_private_key        # Without 0x prefix
-RPC_URL=https://polygon-mainnet...  # Polygon RPC endpoint
+RPC_URL=https://polygon-mainnet...  # Polygon RPC endpoint (must support pending tx monitoring)
 ```
 
 Optional settings:
 
 ```env
 FETCH_INTERVAL=1                    # Polling interval (seconds)
-TRADE_MULTIPLIER=1.0                # Position size multiplier
+MIN_TRADE_SIZE_USD=100              # Minimum trade size to frontrun (USD)
+FRONTRUN_SIZE_MULTIPLIER=0.5        # Frontrun size as % of target (0.0-1.0)
+GAS_PRICE_MULTIPLIER=1.2            # Gas price multiplier for priority (e.g., 1.2 = 20% higher)
 USDC_CONTRACT_ADDRESS=0x2791...     # USDC contract (default: Polygon mainnet)
 ```
 
 ## Features
 
-- Multi-trader monitoring
-- Proportional position sizing
-- Real-time trade detection
-- Automatic order execution
+- Mempool monitoring for pending transactions
+- Real-time trade detection via API and mempool
+- Priority execution with configurable gas pricing
+- Automatic frontrun order execution
+- Configurable frontrun size and thresholds
 - Error handling and retries
 
 ## Requirements
