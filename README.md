@@ -67,6 +67,10 @@ See [GUIDE.md](./GUIDE.md) for detailed setup, configuration, and troubleshootin
 
 Apache-2.0
 
+## Contact
+
+For support or questions, reach out on Telegram: [@trum3it](https://t.me/trum3it)
+
 ## Disclaimer
 
 This software is provided as-is. Trading involves substantial risk. Use at your own risk.
