@@ -13,7 +13,13 @@ export type CreateClientInput = {
 export async function createPolymarketClient(
   input: CreateClientInput,
 ): Promise<ClobClient & { wallet: Wallet }> {
-  const provider = new providers.JsonRpcProvider(input.rpcUrl);
+  // Configure for Polygon network (chainId: 137) and disable ENS
+  const network = {
+    chainId: 137,
+    name: 'matic',
+    ensAddress: undefined, // Disable ENS - Polygon doesn't support it
+  };
+  const provider = new providers.JsonRpcProvider(input.rpcUrl, network);
   const wallet = new Wallet(input.privateKey, provider);
   
   let creds: ApiKeyCreds | undefined;

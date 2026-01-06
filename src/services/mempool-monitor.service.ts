@@ -77,7 +77,13 @@ export class MempoolMonitorService {
     const { logger, env } = this.deps;
     logger.info('Starting Polymarket Frontrun Bot - Mempool Monitor');
     
-    this.provider = new ethers.providers.JsonRpcProvider(env.rpcUrl);
+    // Configure for Polygon network (chainId: 137) and disable ENS
+    const network = {
+      chainId: 137,
+      name: 'matic',
+      ensAddress: undefined, // Disable ENS - Polygon doesn't support it
+    };
+    this.provider = new ethers.providers.JsonRpcProvider(env.rpcUrl, network);
     this.isRunning = true;
 
     // Subscribe to pending transactions
