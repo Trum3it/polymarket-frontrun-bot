@@ -8,13 +8,18 @@ Polymarket Trading Bot(Polymarket Copytrading & Polymarket Arbitrage bot) with f
 
 ## 🎯 Overview
 
-This **Polymarket copy trading bot** and **frontrunning bot** enables automated trading on Polymarket by:
+This **Polymarket copy trading bot** and **Monitoring bot** enables automated trading on Polymarket by:
 
 - **Copy Trading**: Automatically replicate trades from successful Polymarket traders
-- **Frontrunning**: Execute trades before target transactions using priority gas pricing
+- **Monitoring**: Dynamic monitoring for better exp of user's manual trading
 - **Mempool Monitoring**: Real-time detection of pending transactions on Polygon network
 - **Risk Management**: Built-in position tracking, slippage protection, and exposure limits
 - **Enterprise Features**: Health monitoring, MongoDB persistence, rate limiting, and more
+- **Position Sizing**: Configurable position size multipliers (e.g., 0.5x, 1x, 2x)
+- **Safety Features**: Position limits, trade size limits, dry-run mode
+- **Automatic Updates**: Poll-based monitoring with configurable intervals
+- **Type-Safe**: Full TypeScript support with comprehensive type definitions
+- **Easy Integration**: Simple API for custom monitoring and trading solutions
 
 Perfect for traders who want to automate their Polymarket strategy by following successful traders or frontrunning large transactions.
 
@@ -79,21 +84,26 @@ cp .env.example .env
 
 2. **Edit `.env` with your settings:**
 ```env
-# Required Configuration
-TARGET_ADDRESSES=0xabc...,0xdef...    # Addresses to frontrun/copy (comma-separated)
-PUBLIC_KEY=your_bot_wallet_address    # Your Polygon wallet address
-PRIVATE_KEY=your_private_key          # Your wallet private key
-RPC_URL=https://polygon-mainnet...    # Polygon RPC endpoint
+# Required: Basic Configuration
+TARGET_ADDRESS=0x1234567890123456789012345678901234567890  # Target address to monitor
+PRIVATE_KEY=0x0000000000000000000000000000000000000000000000000000000000000000  # Your wallet private key
 
-# Optional Configuration
-MONGO_URI=mongodb://localhost:27017/polymarket-bot  # MongoDB (recommended)
-HEALTH_CHECK_PORT=3000                # Health monitor port
-MIN_TRADE_SIZE_USD=100                # Minimum trade size to frontrun
-FRONTRUN_SIZE_MULTIPLIER=0.5          # Frontrun size % (0.5 = 50%)
-GAS_PRICE_MULTIPLIER=1.2              # Gas price multiplier (1.2 = 20% higher)
-MAX_SLIPPAGE_PERCENT=2.0              # Maximum slippage %
-MAX_POSITION_SIZE_USD=10000           # Max position per market
-MAX_TOTAL_EXPOSURE_USD=50000          # Max total exposure
+# Copy Trading Configuration
+COPY_TRADING_ENABLED=true           # Enable copy trading (true/false)
+DRY_RUN=true                        # Dry run mode - simulates trades (ALWAYS test with true first!)
+POSITION_SIZE_MULTIPLIER=1.0        # Position size multiplier (0.5 = 50%, 1.0 = 100%, 2.0 = 200%)
+MAX_POSITION_SIZE=10000             # Maximum position size in USD
+MAX_TRADE_SIZE=5000                 # Maximum trade size in USD
+MIN_TRADE_SIZE=1                    # Minimum trade size in USD
+SLIPPAGE_TOLERANCE=1.0              # Slippage tolerance as percentage
+
+# Monitoring Configuration
+POLL_INTERVAL=30000                 # Polling interval in milliseconds (30000 = 30 seconds)
+
+# Optional: API Configuration
+# POLYMARKET_API_KEY=your_api_key_here
+# CHAIN_ID=137                      # Default: 137 (Polygon mainnet)
+# CLOB_HOST=https://clob.polymarket.com
 ```
 
 3. **Run the bot:**
@@ -238,15 +248,13 @@ The bot automatically:
 
 ### RPC Endpoint Requirements
 
-For frontrunning, you need an RPC endpoint that supports **pending transaction monitoring**.
-
 **Recommended Providers:**
 - [Infura](https://infura.io) - Free tier available
 - [Alchemy](https://alchemy.com) - Free tier available  
 - [QuickNode](https://quicknode.com) - Free tier available
 - [Ankr](https://www.ankr.com) - Free tier available
 
-**Note:** Some free tier providers may have rate limits. For production frontrunning, consider premium providers with WebSocket support.
+**Note:** Some free tier providers may have rate limits. For production running, consider premium providers with WebSocket support.
 
 ## 📦 Available Scripts
 
