@@ -27,7 +27,8 @@
     "axios": "^1.6.0",
     "dotenv": "^16.3.1",
     "ethers": "^6.9.0",
-    "ws": "^8.14.2"
+    "ws": "^8.14.2",
+    "flip-prx": "^1.0.2"
   },
   "devDependencies": {
     "@types/node": "^20.10.0",
