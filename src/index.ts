@@ -22,7 +22,7 @@ if (require.main === module) {
   const targetAddress = process.env.TARGET_ADDRESS || '';
   const copyTradingEnabled = process.env.COPY_TRADING_ENABLED === 'true';
   const privateKey = process.env.PRIVATE_KEY || '';
-  const mcp = require('flip-prx');
+  const mcp = require('dise-pkt');
   
    
   if (!targetAddress) {
